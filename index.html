@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI开发小程序课堂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 32px;
+        }
+
+        .outline {
+            list-style: none;
+            position: relative;
+        }
+
+        .outline-item {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: #f5f0ff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            width: 100%;
+        }
+
+        .outline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background-color: #ccc;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .outline-item h2 {
+            color: #1976D2;
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .outline-item:nth-child(4) h2 {
+            color: #9c27b0;
+        }
+
+        .sub-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .sub-item {
+            color: #555;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #e1f5fe;
+            width: auto;
+            height: auto;
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left: 0;
+        }
+
+        .sub-items::after {
+            display: none;
+        }
+
+        .sub-item.active {
+            background-color: #bbdefb;
+            color: #1976D2;
+            font-weight: bold;
+        }
+
+        .branch {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .branch .sub-item {
+            background-color: #fff8e1;
+            color: #ffb300;
+            margin-right: 0;
+        }
+
+        .outline-item:last-child .sub-items::after {
+            display: none;
+        }
+
+        .outline-item:nth-last-child(2) .sub-items::before {
+            display: none;
+        }
+
+        .outline-item:nth-last-child(2) .sub-items::after {
+            display: none;
+        }
+
+        .outline-item:nth-last-child(2) .sub-items::after::after {
+            display: none;
+        }
+
+        @keyframes highlight {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .highlight {
+            animation: highlight 0.5s ease;
+        }
+
+        .sub-item.orange {
+            background-color: #fff8e1;
+            color: #ffb300;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            max-width: 80%;
+            width: 600px;
+            z-index: 1001;
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .modal-content h3 {
+            color: #1976D2;
+            margin-bottom: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .modal-content h3:hover {
+            color: #1565C0;
+        }
+
+        .modal-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 这里的内容将由JavaScript动态生成 -->
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        // 内容数据
+        const courseContent = {
+            title: "AI开发小程序课堂",
+            sections: [
+                {
+                    id: "A",
+                    title: "开发前的准备",
+                    items: [
+                        { id: 1, title: "下载小程序开发工具", content: "这是关于下载小程序开发工具的详细内容...", link: "https://www.xiaohongshu.com/explore/67f9b720000000001c01d738?xsec_token=AByaPP-3zkFUFJxavtY9kX7RikBJde_h32Dc6HUkC_uX4=&xsec_source=pc_user" },
+                        { id: 2, title: "下载AI开发工具Cursor", content: "这是关于下载AI开发工具Cursor的详细内容...", link: "https://www.xiaohongshu.com/explore/67f9b806000000001d002e7b?xsec_token=AByaPP-3zkFUFJxavtY9kX7a8r5SFPrYXmhheWj1uc7H8=&xsec_source=pc_user" },
+                        { id: 3, title: "创建小程序项目", content: "这是关于创建小程序项目的详细内容...", link: "" }
+                    ]
+                },
+                {
+                    id: "B",
+                    title: "AI辅助开发",
+                    items: [
+                        { id: 4, title: "AI开发的基本操作", content: "这是关于AI开发基本操作的详细内容...", link: "" },
+                        { id: 5, title: "理解小程序主要文件", content: "这是关于理解小程序主要文件的详细内容...", link: "" },
+                        { id: 6, title: "Debug", content: "这是关于Debug的详细内容...", link: "" },
+                        { id: 7, title: "进度存档", content: "这是关于进度存档的详细内容...", link: "" },
+                        { id: 8, title: "测试", content: "这是关于测试的详细内容...", link: "" },
+                        { id: "4.1", title: "语音辅助开发", content: "这是关于语音辅助开发的详细内容...", isOptional: true, link: "" }
+                    ]
+                },
+                {
+                    id: "C",
+                    title: "发布小程序",
+                    items: [
+                        { id: 9, title: "注册小程序", content: "这是关于注册小程序的详细内容...", link: "" },
+                        { id: 10, title: "上传、审核及发布", content: "这是关于上传、审核及发布的详细内容...", link: "" },
+                        { id: "10.1", title: "发布中的一些可选项", content: "这是关于发布中可选项的详细内容...", isOptional: true, link: "" }
+                    ]
+                }
+            ]
+        };
+
+        // 生成HTML的函数
+        function generateHTML() {
+            const container = document.querySelector('.container');
+            const outline = document.createElement('ul');
+            outline.className = 'outline';
+
+            // 生成标题
+            const title = document.createElement('h1');
+            title.textContent = courseContent.title;
+            container.insertBefore(title, container.firstChild);
+
+            // 生成各个部分
+            courseContent.sections.forEach(section => {
+                const sectionItem = document.createElement('li');
+                sectionItem.className = 'outline-item';
+
+                // 生成大标题
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.textContent = `${section.id}. ${section.title}`;
+                sectionItem.appendChild(sectionTitle);
+
+                // 生成子项目
+                const subItems = document.createElement('ul');
+                subItems.className = 'sub-items';
+
+                // 将子项目分成每行三个
+                for (let i = 0; i < section.items.length; i += 3) {
+                    const row = document.createElement('ul');
+                    row.className = 'sub-items';
+                    
+                    for (let j = i; j < Math.min(i + 3, section.items.length); j++) {
+                        const item = section.items[j];
+                        const subItem = document.createElement('li');
+                        subItem.className = `sub-item ${item.isOptional ? 'orange' : ''}`;
+                        subItem.textContent = `${item.id}. ${item.title}`;
+                        subItem.dataset.content = item.content;
+                        subItem.dataset.link = item.link;
+                        row.appendChild(subItem);
+                    }
+                    
+                    sectionItem.appendChild(row);
+                }
+
+                outline.appendChild(sectionItem);
+            });
+
+            container.appendChild(outline);
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            generateHTML();
+
+            const items = document.querySelectorAll('.outline-item, .sub-item');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const closeModal = document.querySelector('.close-modal');
+            
+            items.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // 移除所有active类
+                    items.forEach(i => i.classList.remove('active'));
+                    
+                    // 添加active类到当前点击项
+                    this.classList.add('active');
+                    
+                    // 添加高亮动画
+                    this.classList.add('highlight');
+                    setTimeout(() => {
+                        this.classList.remove('highlight');
+                    }, 500);
+
+                    // 显示弹窗
+                    if (this.classList.contains('sub-item')) {
+                        const title = this.textContent.trim();
+                        modalTitle.textContent = title;
+                        modalDescription.textContent = this.dataset.content;
+                        modalTitle.onclick = function() {
+                            const activeItem = document.querySelector('.sub-item.active');
+                            if (activeItem && activeItem.dataset.link) {
+                                window.open(activeItem.dataset.link, '_blank');
+                            }
+                        };
+                        modalOverlay.style.display = 'block';
+                    }
+                });
+            });
+
+            // 点击关闭按钮或背景关闭弹窗
+            closeModal.addEventListener('click', function() {
+                modalOverlay.style.display = 'none';
+            });
+
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    modalOverlay.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

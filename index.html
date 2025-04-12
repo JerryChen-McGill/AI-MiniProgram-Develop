@@ -189,12 +189,24 @@
             color: #1976D2;
             margin-bottom: 20px;
             font-size: 24px;
-            cursor: pointer;
-            text-decoration: underline;
+            cursor: default;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .modal-content h3:hover {
-            color: #1565C0;
+        .modal-content h3 .learn-link {
+            color: #5db6f4;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 20px;
+            margin-right: 8em;
+        }
+
+        .modal-content h3 .learn-link:hover {
+            text-decoration: underline;
         }
 
         .modal-content p {
@@ -221,7 +233,10 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3 id="modalTitle"></h3>
+            <h3 id="modalTitle">
+                <span class="title-text"></span>
+                <a class="learn-link">去学</a>
+            </h3>
             <p id="modalDescription"></p>
         </div>
     </div>
@@ -235,30 +250,30 @@
                     id: "A",
                     title: "开发前的准备",
                     items: [
-                        { id: 1, title: "下载小程序开发工具", content: "这是关于下载小程序开发工具的详细内容...", link: "" },
-                        { id: 2, title: "下载AI开发工具Cursor", content: "这是关于下载AI开发工具Cursor的详细内容...", link: "" },
-                        { id: 3, title: "创建小程序项目", content: "这是关于创建小程序项目的详细内容...", link: "" }
+                        { id: 1, title: "下载小程序开发工具", content: "", link: "" },
+                        { id: 2, title: "下载AI开发工具Cursor", content: "", link: "" },
+                        { id: 3, title: "创建小程序项目", content: "", link: "" }
                     ]
                 },
                 {
                     id: "B",
                     title: "AI辅助开发",
                     items: [
-                        { id: 4, title: "AI开发的基本操作", content: "这是关于AI开发基本操作的详细内容...", link: "" },
-                        { id: 5, title: "理解小程序主要文件", content: "这是关于理解小程序主要文件的详细内容...", link: "" },
-                        { id: 6, title: "Debug", content: "这是关于Debug的详细内容...", link: "" },
-                        { id: 7, title: "进度存档", content: "这是关于进度存档的详细内容...", link: "" },
-                        { id: 8, title: "测试", content: "这是关于测试的详细内容...", link: "" },
-                        { id: "i", title: "语音辅助开发", content: "这是关于语音辅助开发的详细内容...", isOptional: true, link: "" }
+                        { id: 4, title: "AI开发的基本操作", content: "", link: "" },
+                        { id: 5, title: "理解小程序主要文件", content: "", link: "" },
+                        { id: 6, title: "Debug", content: "", link: "" },
+                        { id: 7, title: "进度存档", content: "", link: "" },
+                        { id: 8, title: "测试", content: "", link: "" },
+                        { id: "i", title: "语音辅助开发", content: "", isOptional: true, link: "" }
                     ]
                 },
                 {
                     id: "C",
                     title: "发布小程序",
                     items: [
-                        { id: 9, title: "注册小程序", content: "这是关于注册小程序的详细内容...", link: "" },
-                        { id: 10, title: "上传、审核及发布", content: "这是关于上传、审核及发布的详细内容...", link: "" },
-                        { id: "ii", title: "发布中的一些可选项", content: "这是关于发布中可选项的详细内容...", isOptional: true, link: "" }
+                        { id: 9, title: "注册小程序", content: "", link: "" },
+                        { id: 10, title: "上传、审核及发布", content: "", link: "" },
+                        { id: "ii", title: "发布中的一些可选项", content: "", isOptional: true, link: "" }
                     ]
                 }
             ]
@@ -342,9 +357,12 @@
                     // 显示弹窗
                     if (this.classList.contains('sub-item')) {
                         const title = this.textContent.trim();
-                        modalTitle.textContent = title;
+                        const titleElement = modalTitle.querySelector('.title-text');
+                        titleElement.textContent = title;
                         modalDescription.textContent = this.dataset.content;
-                        modalTitle.onclick = function() {
+                        const learnLink = modalTitle.querySelector('.learn-link');
+                        learnLink.onclick = function(e) {
+                            e.stopPropagation();
                             const activeItem = document.querySelector('.sub-item.active');
                             if (activeItem && activeItem.dataset.link) {
                                 window.open(activeItem.dataset.link, '_blank');

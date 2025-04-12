@@ -227,7 +227,96 @@
     </div>
 
     <script>
+        // 内容数据
+        const courseContent = {
+            title: "AI开发小程序课堂",
+            sections: [
+                {
+                    id: "A",
+                    title: "开发前的准备",
+                    items: [
+                        { id: 1, title: "下载小程序开发工具", content: "这是关于下载小程序开发工具的详细内容...", link: "" },
+                        { id: 2, title: "下载AI开发工具Cursor", content: "这是关于下载AI开发工具Cursor的详细内容...", link: "" },
+                        { id: 3, title: "创建小程序项目", content: "这是关于创建小程序项目的详细内容...", link: "" }
+                    ]
+                },
+                {
+                    id: "B",
+                    title: "AI辅助开发",
+                    items: [
+                        { id: 4, title: "AI开发的基本操作", content: "这是关于AI开发基本操作的详细内容...", link: "" },
+                        { id: 5, title: "理解小程序主要文件", content: "这是关于理解小程序主要文件的详细内容...", link: "" },
+                        { id: 6, title: "Debug", content: "这是关于Debug的详细内容...", link: "" },
+                        { id: 7, title: "进度存档", content: "这是关于进度存档的详细内容...", link: "" },
+                        { id: 8, title: "测试", content: "这是关于测试的详细内容...", link: "" },
+                        { id: "i", title: "语音辅助开发", content: "这是关于语音辅助开发的详细内容...", isOptional: true, link: "" }
+                    ]
+                },
+                {
+                    id: "C",
+                    title: "发布小程序",
+                    items: [
+                        { id: 9, title: "注册小程序", content: "这是关于注册小程序的详细内容...", link: "" },
+                        { id: 10, title: "上传、审核及发布", content: "这是关于上传、审核及发布的详细内容...", link: "" },
+                        { id: "ii", title: "发布中的一些可选项", content: "这是关于发布中可选项的详细内容...", isOptional: true, link: "" }
+                    ]
+                }
+            ]
+        };
+
+        // 生成HTML的函数
+        function generateHTML() {
+            const container = document.querySelector('.container');
+            const outline = document.createElement('ul');
+            outline.className = 'outline';
+
+            // 生成标题
+            const title = document.createElement('h1');
+            title.textContent = courseContent.title;
+            container.insertBefore(title, container.firstChild);
+
+            // 生成各个部分
+            courseContent.sections.forEach(section => {
+                const sectionItem = document.createElement('li');
+                sectionItem.className = 'outline-item';
+
+                // 生成大标题
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.textContent = `${section.id}. ${section.title}`;
+                sectionItem.appendChild(sectionTitle);
+
+                // 生成子项目
+                const subItems = document.createElement('ul');
+                subItems.className = 'sub-items';
+
+                // 将子项目分成每行三个
+                for (let i = 0; i < section.items.length; i += 3) {
+                    const row = document.createElement('ul');
+                    row.className = 'sub-items';
+                    
+                    for (let j = i; j < Math.min(i + 3, section.items.length); j++) {
+                        const item = section.items[j];
+                        const subItem = document.createElement('li');
+                        subItem.className = `sub-item ${item.isOptional ? 'orange' : ''}`;
+                        subItem.textContent = `${item.id}. ${item.title}`;
+                        subItem.dataset.content = item.content;
+                        subItem.dataset.link = item.link;
+                        row.appendChild(subItem);
+                    }
+                    
+                    sectionItem.appendChild(row);
+                }
+
+                outline.appendChild(sectionItem);
+            });
+
+            container.appendChild(outline);
+        }
+
+        // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
+            generateHTML();
+
             const items = document.querySelectorAll('.outline-item, .sub-item');
             const modalOverlay = document.getElementById('modalOverlay');
             const modalTitle = document.getElementById('modalTitle');
@@ -254,7 +343,13 @@
                     if (this.classList.contains('sub-item')) {
                         const title = this.textContent.trim();
                         modalTitle.textContent = title;
-                        modalDescription.textContent = `这是关于${title}的详细内容...`;
+                        modalDescription.textContent = this.dataset.content;
+                        modalTitle.onclick = function() {
+                            const activeItem = document.querySelector('.sub-item.active');
+                            if (activeItem && activeItem.dataset.link) {
+                                window.open(activeItem.dataset.link, '_blank');
+                            }
+                        };
                         modalOverlay.style.display = 'block';
                     }
                 });

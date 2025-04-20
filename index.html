@@ -15,23 +15,42 @@
             font-family: 'Microsoft YaHei', sans-serif;
             background-color: #f9f9f9;
             padding: 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0;
             background: white;
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             text-align: center;
+            flex: 1;
+        }
+
+        .advanced-container {
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            flex: 1;
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #5db6f4;
             margin-bottom: 40px;
             font-size: 32px;
+            cursor: pointer;
+        }
+
+        h1:hover {
+            opacity: 0.8;
         }
 
         .outline {
@@ -86,6 +105,7 @@
             border-radius: 8px;
             background-color: #e1f5fe;
             width: auto;
+            min-width: 200px;
             height: auto;
             display: inline-block;
             align-items: center;
@@ -186,27 +206,16 @@
         }
 
         .modal-content h3 {
-            color: #1976D2;
+            color: #5db6f4;
             margin-bottom: 20px;
             font-size: 24px;
-            cursor: default;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-content h3 .learn-link {
-            color: #5db6f4;
-            font-size: 16px;
-            text-decoration: none;
             cursor: pointer;
-            margin-left: 20px;
-            margin-right: 8em;
+            text-decoration: none;
+            text-align: center;
         }
 
-        .modal-content h3 .learn-link:hover {
-            text-decoration: underline;
+        .modal-content h3:hover {
+            opacity: 0.8;
         }
 
         .modal-content p {
@@ -230,13 +239,27 @@
         <!-- 这里的内容将由JavaScript动态生成 -->
     </div>
 
+    <div class="advanced-container">
+        <h1>AI小程序进阶技巧</h1>
+        <ul class="outline">
+            <li class="outline-item">
+                <h2>A. 进阶功能</h2>
+                <ul class="sub-items">
+                    <li class="sub-item">小程序内嵌AI功能</li>
+                    <li class="sub-item">上传图片</li>
+                    <li class="sub-item">连接数据库</li>
+                </ul>
+                <ul class="sub-items">
+                    <li class="sub-item">语音辅助开发</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3 id="modalTitle">
-                <span class="title-text"></span>
-                <a class="learn-link">去学</a>
-            </h3>
+            <h3 id="modalTitle"></h3>
             <p id="modalDescription"></p>
         </div>
     </div>
@@ -245,34 +268,34 @@
         // 内容数据
         const courseContent = {
             title: "AI开发小程序课堂",
+            titleLink: "https://www.xiaohongshu.com/explore/67f9b57b000000001d0028ed?xsec_token=AByaPP-3zkFUFJxavtY9kX7aO-_LN1Fzl8FUhiwDjYMK8=&xsec_source=pc_user",
             sections: [
                 {
                     id: "A",
                     title: "开发前的准备",
                     items: [
-                        { id: 1, title: "下载小程序开发工具", content: "", link: "" },
-                        { id: 2, title: "下载AI开发工具Cursor", content: "", link: "" },
-                        { id: 3, title: "创建小程序项目", content: "", link: "" }
+                        { id: 1, title: "下载小程序开发工具", content: "", link: "https://www.xiaohongshu.com/explore/67f9b720000000001c01d738?xsec_token=AByaPP-3zkFUFJxavtY9kX7UIXvhyuXjooTsVkCuOWIis=&xsec_source=pc_user" },
+                        { id: 2, title: "下载AI开发工具Cursor", content: "", link: "https://www.xiaohongshu.com/explore/67f9b806000000001d002e7b?xsec_token=AByaPP-3zkFUFJxavtY9kX7UPZBQbFVtUBT5zB_PRK5E4=&xsec_source=pc_user" },
+                        { id: 3, title: "创建小程序项目", content: "", link: "https://www.xiaohongshu.com/explore/67faa166000000001c0373de?xsec_token=AByW2sWtAez9bBTsn6A1WzW1vkIPuCb8xs9eBKmtW7qhA=&xsec_source=pc_user" }
                     ]
                 },
                 {
                     id: "B",
                     title: "AI辅助开发",
                     items: [
-                        { id: 4, title: "AI开发的基本操作", content: "", link: "" },
-                        { id: 5, title: "理解小程序主要文件", content: "", link: "" },
-                        { id: 6, title: "Debug", content: "", link: "" },
-                        { id: 7, title: "进度存档", content: "", link: "" },
-                        { id: 8, title: "测试", content: "", link: "" },
-                        { id: "i", title: "语音辅助开发", content: "", isOptional: true, link: "" }
+                        { id: 4, title: "AI开发的基本操作", content: "", link: "https://www.xiaohongshu.com/explore/67fad015000000001c0100df?xsec_token=AByW2sWtAez9bBTsn6A1WzW5t6RjL7jhU33MsH6sU5c8k=&xsec_source=pc_user" },
+                        { id: 5, title: "理解小程序主要文件", content: "", link: "https://www.xiaohongshu.com/explore/67fb3226000000001c01d2e9?xsec_token=ABs7148gUck6Xx7D_KkGcr6Xx8_wqqhdrxxsl0tGdhLBc=&xsec_source=pc_user" },
+                        { id: 6, title: "Debug", content: "", link: "https://www.xiaohongshu.com/explore/67fbe7a2000000001c033b61?xsec_token=ABs7148gUck6Xx7D_KkGcr6U2GR5AIbXcPyAAz9OR1YAY=&xsec_source=pc_user" },
+                        { id: 7, title: "进度存档", content: "", link: "https://www.xiaohongshu.com/explore/68044f2e000000001202e7ad?xsec_token=ABU4az0rCwYlNmglqJZe7BeqDKo9P45voS08e66HBYucA=&xsec_source=pc_user" },
+                        { id: 8, title: "测试", content: "", link: "https://www.xiaohongshu.com/explore/67ff3037000000001c02e93c?xsec_token=ABnTaNHR-w7XrP1kZLhyaiQxvej-saHuPH77ZvNegAIH4=&xsec_source=pc_user" }
                     ]
                 },
                 {
                     id: "C",
                     title: "发布小程序",
                     items: [
-                        { id: 9, title: "注册小程序", content: "", link: "" },
-                        { id: 10, title: "上传、审核及发布", content: "", link: "" },
+                        { id: 9, title: "注册小程序", content: "", link: "https://www.xiaohongshu.com/explore/68045d41000000001c037d88?xsec_token=ABU4az0rCwYlNmglqJZe7Bekq-5rXyNNvkDufMGQF9HN8=&xsec_source=pc_user" },
+                        { id: 10, title: "上传、审核及发布", content: "", link: "https://www.xiaohongshu.com/explore/68046e00000000001c03084c?xsec_token=ABU4az0rCwYlNmglqJZe7BerDiwjT-fHicqmWUEkRiDxs=&xsec_source=pc_user" },
                         { id: "ii", title: "发布中的一些可选项", content: "", isOptional: true, link: "" }
                     ]
                 }
@@ -288,6 +311,11 @@
             // 生成标题
             const title = document.createElement('h1');
             title.textContent = courseContent.title;
+            title.onclick = function() {
+                if (courseContent.titleLink) {
+                    window.open(courseContent.titleLink, '_blank');
+                }
+            };
             container.insertBefore(title, container.firstChild);
 
             // 生成各个部分
@@ -357,12 +385,12 @@
                     // 显示弹窗
                     if (this.classList.contains('sub-item')) {
                         const title = this.textContent.trim();
-                        const titleElement = modalTitle.querySelector('.title-text');
-                        titleElement.textContent = title;
+                        // 移除序号
+                        const titleWithoutNumber = title.replace(/^\d+\.\s*/, '');
+                        modalTitle.textContent = titleWithoutNumber;
                         modalDescription.textContent = this.dataset.content;
-                        const learnLink = modalTitle.querySelector('.learn-link');
-                        learnLink.onclick = function(e) {
-                            e.stopPropagation();
+                        
+                        modalTitle.onclick = function() {
                             const activeItem = document.querySelector('.sub-item.active');
                             if (activeItem && activeItem.dataset.link) {
                                 window.open(activeItem.dataset.link, '_blank');

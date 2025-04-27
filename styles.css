@@ -150,8 +150,9 @@ h1:hover {
     transform: translateX(-50%);
 }
 
-.outline-item h2 {
-    color: #333;  /* 深灰色文字 */
+/* 基础教程章节标题样式 */
+.container .outline-item h2 {
+    color: #1976D2;  /* 蓝色主题 */
     font-size: 24px;
     margin-bottom: 20px;
     position: relative;
@@ -464,4 +465,13 @@ h1:hover {
     box-shadow: none;
     background-color: rgba(255, 255, 255, 0.8) !important;  /* 保持原始背景色 */
     color: #9e9e9e !important;  /* 保持灰色 */
+}
+
+/* 进阶教程章节标题样式 */
+.advanced-container .outline-item h2 {
+    color: #9C27B0;  /* 紫色主题 */
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 40px;
 } 

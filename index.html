@@ -86,7 +86,6 @@
             // 生成标题
             const advancedTitle = document.createElement('h1');
             advancedTitle.textContent = courseContent.advancedSection.title;
-            advancedTitle.style.color = '#9c27b0';  // 紫色主题
             advancedContainer.appendChild(advancedTitle);
 
             const advancedOutline = document.createElement('ul');
@@ -98,7 +97,6 @@
 
                 const sectionTitle = document.createElement('h2');
                 sectionTitle.textContent = `${section.id}. ${section.title}`;
-                sectionTitle.style.color = '#9c27b0';  // 紫色主题
                 sectionItem.appendChild(sectionTitle);
 
                 // 生成子项目

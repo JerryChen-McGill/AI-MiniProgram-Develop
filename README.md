@@ -1,25 +1,42 @@
-# AI-MiniProgram-Develop
-A website to learnDevelop 
+# AI小程序开发教程
 
-目录及链接：
-AI开发小程序课堂：https://www.xiaohongshu.com/explore/67f9b57b000000001d0028ed?xsec_token=AByaPP-3zkFUFJxavtY9kX7aO-_LN1Fzl8FUhiwDjYMK8=&xsec_source=pc_user
+> 📚 教程网站：[https://jerrychen-mcgill.github.io/AI-MiniProgram-Develop/](https://jerrychen-mcgill.github.io/AI-MiniProgram-Develop/)
 
-下载小程序开发工具：https://www.xiaohongshu.com/explore/67f9b720000000001c01d738?xsec_token=AByaPP-3zkFUFJxavtY9kX7UIXvhyuXjooTsVkCuOWIis=&xsec_source=pc_user
+这是一个面向初学者的微信小程序开发教程，结合 AI 辅助开发工具，让您快速入门小程序开发。本教程特点：
 
-下载AI开发工具Cursor：https://www.xiaohongshu.com/explore/67f9b806000000001d002e7b?xsec_token=AByaPP-3zkFUFJxavtY9kX7UPZBQbFVtUBT5zB_PRK5E4=&xsec_source=pc_user
+- 🚀 零基础友好：适合完全没有编程经验的初学者
+- 🤖 AI驱动开发：使用 Cursor 等AI工具辅助编程
+- 📱 实战导向：从环境搭建到项目发布的完整流程
+- 🎯 循序渐进：基础到进阶的清晰学习路径
 
-创建小程序项目：https://www.xiaohongshu.com/explore/67faa166000000001c0373de?xsec_token=AByW2sWtAez9bBTsn6A1WzW1vkIPuCb8xs9eBKmtW7qhA=&xsec_source=pc_user
+## 课程大纲
 
-AI开发的基本操作：https://www.xiaohongshu.com/explore/67fad015000000001c0100df?xsec_token=AByW2sWtAez9bBTsn6A1WzW5t6RjL7jhU33MsH6sU5c8k=&xsec_source=pc_user
+### A. 开发前的准备
+1. 下载小程序开发工具
+2. 下载AI开发工具Cursor
+3. 创建小程序项目
 
-理解小程序主要代码文件：https://www.xiaohongshu.com/explore/67fb3226000000001c01d2e9?xsec_token=ABs7148gUck6Xx7D_KkGcr6Xx8_wqqhdrxxsl0tGdhLBc=&xsec_source=pc_user
+### B. AI辅助开发
+4. AI开发的基本操作
+5. 理解小程序主要代码文件
+6. Debug调试技巧
+7. 进度存档
+8. 测试方法
 
-Debug：https://www.xiaohongshu.com/explore/67fbe7a2000000001c033b61?xsec_token=ABs7148gUck6Xx7D_KkGcr6U2GR5AIbXcPyAAz9OR1YAY=&xsec_source=pc_user
+### C. 发布小程序
+9. 注册小程序
+10. 上传、审核及发布
 
-进度存档：https://www.xiaohongshu.com/explore/68044f2e000000001202e7ad?xsec_token=ABU4az0rCwYlNmglqJZe7BeqDKo9P45voS08e66HBYucA=&xsec_source=pc_user
+### D. 进阶功能
+1. 小程序内嵌AI功能
+2. 上传和显示图片
+3. 连接数据库（开发中）
+4. 语音辅助开发（开发中）
+5. 发布中的一些可选项（开发中）
 
-测试：https://www.xiaohongshu.com/explore/67ff3037000000001c02e93c?xsec_token=ABnTaNHR-w7XrP1kZLhyaiQxvej-saHuPH77ZvNegAIH4=&xsec_source=pc_user
+## 开始学习
 
-注册小程序：https://www.xiaohongshu.com/explore/68045d41000000001c037d88?xsec_token=ABU4az0rCwYlNmglqJZe7Bekq-5rXyNNvkDufMGQF9HN8=&xsec_source=pc_user
+👉 访问 [教程网站](https://jerrychen-mcgill.github.io/AI-MiniProgram-Develop/) 开始您的AI小程序开发之旅！
 
-上传、审核及发布：https://www.xiaohongshu.com/explore/68046e00000000001c03084c?xsec_token=ABU4az0rCwYlNmglqJZe7BerDiwjT-fHicqmWUEkRiDxs=&xsec_source=pc_user
+---
+持续更新中...欢迎关注！

@@ -4,323 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI开发小程序课堂</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            background-color: #f9f9f9;
-            padding: 40px;
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            flex: 1;
-        }
-
-        .advanced-container {
-            max-width: 800px;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            flex: 1;
-        }
-
-        h1 {
-            text-align: center;
-            color: #5db6f4;
-            margin-bottom: 40px;
-            font-size: 32px;
-            cursor: pointer;
-        }
-
-        h1:hover {
-            opacity: 0.8;
-        }
-
-        .outline {
-            list-style: none;
-            position: relative;
-        }
-
-        .outline-item {
-            margin-bottom: 40px;
-            padding: 20px;
-            border-radius: 15px;
-            background-color: #f5f0ff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: relative;
-            width: 100%;
-        }
-
-        .outline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 40px;
-            background-color: #ccc;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .outline-item h2 {
-            color: #1976D2;
-            font-size: 24px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 40px;
-        }
-
-        .outline-item:nth-child(4) h2 {
-            color: #9c27b0;
-        }
-
-        .sub-items {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 0;
-            flex-wrap: wrap;
-        }
-
-        .sub-item {
-            color: #555;
-            margin: 10px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            background-color: #e1f5fe;
-            width: auto;
-            min-width: 200px;
-            height: auto;
-            display: inline-block;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            left: 0;
-        }
-
-        .sub-items::after {
-            display: none;
-        }
-
-        .sub-item.active {
-            background-color: #bbdefb;
-            color: #1976D2;
-            font-weight: bold;
-        }
-
-        .branch {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .branch .sub-item {
-            background-color: #fff8e1;
-            color: #ffb300;
-            margin-right: 0;
-        }
-
-        .outline-item:last-child .sub-items::after {
-            display: none;
-        }
-
-        .outline-item:nth-last-child(2) .sub-items::before {
-            display: none;
-        }
-
-        .outline-item:nth-last-child(2) .sub-items::after {
-            display: none;
-        }
-
-        .outline-item:nth-last-child(2) .sub-items::after::after {
-            display: none;
-        }
-
-        @keyframes highlight {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .highlight {
-            animation: highlight 0.5s ease;
-        }
-
-        .sub-item.orange {
-            background-color: #fff8e1;
-            color: #ffb300;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            max-width: 80%;
-            width: 600px;
-            z-index: 1001;
-            animation: modalAppear 0.3s ease;
-        }
-
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        .modal-content h3 {
-            color: #5db6f4;
-            margin-bottom: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .modal-content h3:hover {
-            opacity: 0.8;
-        }
-
-        .modal-content p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 24px;
-            color: #666;
-        }
-
-        @media screen and (max-width: 768px) {
-            body {
-                flex-direction: column;
-                padding: 20px;
-                gap: 20px;
-            }
-
-            .container, .advanced-container {
-                max-width: 100%;
-                padding: 20px;
-                margin: 0;
-            }
-
-            h1 {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-
-            .outline-item h2 {
-                font-size: 20px;
-                padding-left: 20px;
-            }
-
-            .sub-items {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .sub-item {
-                width: 100%;
-                min-width: auto;
-                margin: 8px 0;
-                text-align: center;
-            }
-
-            .modal-content {
-                width: 90%;
-                padding: 20px;
-            }
-
-            .modal-content h3 {
-                font-size: 20px;
-            }
-
-            .modal-content p {
-                font-size: 14px;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            body {
-                padding: 15px;
-                gap: 15px;
-            }
-
-            .container, .advanced-container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 20px;
-                margin-bottom: 15px;
-            }
-
-            .outline-item h2 {
-                font-size: 18px;
-                padding-left: 15px;
-            }
-
-            .sub-item {
-                margin: 6px 0;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 15px;
-            }
-
-            .modal-content h3 {
-                font-size: 18px;
-            }
-
-            .modal-content p {
-                font-size: 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -328,20 +12,7 @@
     </div>
 
     <div class="advanced-container">
-        <h1>AI小程序进阶技巧</h1>
-        <ul class="outline">
-            <li class="outline-item">
-                <h2>A. 进阶功能</h2>
-                <ul class="sub-items">
-                    <li class="sub-item">小程序内嵌AI功能</li>
-                    <li class="sub-item">上传图片</li>
-                    <li class="sub-item">连接数据库</li>
-                </ul>
-                <ul class="sub-items">
-                    <li class="sub-item">语音辅助开发</li>
-                </ul>
-            </li>
-        </ul>
+        <!-- 这里的内容将由JavaScript动态生成 -->
     </div>
 
     <div class="modal-overlay" id="modalOverlay">
@@ -352,46 +23,11 @@
         </div>
     </div>
 
+    <!-- 引入数据文件 -->
+    <script src="data.js"></script>
     <script>
-        // 内容数据
-        const courseContent = {
-            title: "AI开发小程序课堂",
-            titleLink: "https://www.xiaohongshu.com/explore/67f9b57b000000001d0028ed?xsec_token=AByaPP-3zkFUFJxavtY9kX7aO-_LN1Fzl8FUhiwDjYMK8=&xsec_source=pc_user",
-            sections: [
-                {
-                    id: "A",
-                    title: "开发前的准备",
-                    items: [
-                        { id: 1, title: "下载小程序开发工具", content: "", link: "https://www.xiaohongshu.com/explore/67f9b720000000001c01d738?xsec_token=AByaPP-3zkFUFJxavtY9kX7UIXvhyuXjooTsVkCuOWIis=&xsec_source=pc_user" },
-                        { id: 2, title: "下载AI开发工具Cursor", content: "", link: "https://www.xiaohongshu.com/explore/67f9b806000000001d002e7b?xsec_token=AByaPP-3zkFUFJxavtY9kX7UPZBQbFVtUBT5zB_PRK5E4=&xsec_source=pc_user" },
-                        { id: 3, title: "创建小程序项目", content: "", link: "https://www.xiaohongshu.com/explore/67faa166000000001c0373de?xsec_token=AByW2sWtAez9bBTsn6A1WzW1vkIPuCb8xs9eBKmtW7qhA=&xsec_source=pc_user" }
-                    ]
-                },
-                {
-                    id: "B",
-                    title: "AI辅助开发",
-                    items: [
-                        { id: 4, title: "AI开发的基本操作", content: "", link: "https://www.xiaohongshu.com/explore/67fad015000000001c0100df?xsec_token=AByW2sWtAez9bBTsn6A1WzW5t6RjL7jhU33MsH6sU5c8k=&xsec_source=pc_user" },
-                        { id: 5, title: "理解小程序主要文件", content: "", link: "https://www.xiaohongshu.com/explore/67fb3226000000001c01d2e9?xsec_token=ABs7148gUck6Xx7D_KkGcr6Xx8_wqqhdrxxsl0tGdhLBc=&xsec_source=pc_user" },
-                        { id: 6, title: "Debug", content: "", link: "https://www.xiaohongshu.com/explore/67fbe7a2000000001c033b61?xsec_token=ABs7148gUck6Xx7D_KkGcr6U2GR5AIbXcPyAAz9OR1YAY=&xsec_source=pc_user" },
-                        { id: 7, title: "进度存档", content: "", link: "https://www.xiaohongshu.com/explore/68044f2e000000001202e7ad?xsec_token=ABU4az0rCwYlNmglqJZe7BeqDKo9P45voS08e66HBYucA=&xsec_source=pc_user" },
-                        { id: 8, title: "测试", content: "", link: "https://www.xiaohongshu.com/explore/67ff3037000000001c02e93c?xsec_token=ABnTaNHR-w7XrP1kZLhyaiQxvej-saHuPH77ZvNegAIH4=&xsec_source=pc_user" }
-                    ]
-                },
-                {
-                    id: "C",
-                    title: "发布小程序",
-                    items: [
-                        { id: 9, title: "注册小程序", content: "", link: "https://www.xiaohongshu.com/explore/68045d41000000001c037d88?xsec_token=ABU4az0rCwYlNmglqJZe7Bekq-5rXyNNvkDufMGQF9HN8=&xsec_source=pc_user" },
-                        { id: 10, title: "上传、审核及发布", content: "", link: "https://www.xiaohongshu.com/explore/68046e00000000001c03084c?xsec_token=ABU4az0rCwYlNmglqJZe7BerDiwjT-fHicqmWUEkRiDxs=&xsec_source=pc_user" },
-                        { id: "ii", title: "发布中的一些可选项", content: "", isOptional: true, link: "" }
-                    ]
-                }
-            ]
-        };
-
-        // 生成HTML的函数
-        function generateHTML() {
+        // 生成基础部分HTML的函数
+        function generateBasicHTML() {
             const container = document.querySelector('.container');
             const outline = document.createElement('ul');
             outline.className = 'outline';
@@ -406,7 +42,7 @@
             };
             container.insertBefore(title, container.firstChild);
 
-            // 生成各个部分
+            // 生成基础部分
             courseContent.sections.forEach(section => {
                 const sectionItem = document.createElement('li');
                 sectionItem.className = 'outline-item';
@@ -417,10 +53,6 @@
                 sectionItem.appendChild(sectionTitle);
 
                 // 生成子项目
-                const subItems = document.createElement('ul');
-                subItems.className = 'sub-items';
-
-                // 将子项目分成每行三个
                 for (let i = 0; i < section.items.length; i += 3) {
                     const row = document.createElement('ul');
                     row.className = 'sub-items';
@@ -428,7 +60,10 @@
                     for (let j = i; j < Math.min(i + 3, section.items.length); j++) {
                         const item = section.items[j];
                         const subItem = document.createElement('li');
-                        subItem.className = `sub-item ${item.isOptional ? 'orange' : ''}`;
+                        const classes = ['sub-item'];
+                        if (item.isOptional) classes.push('orange');
+                        if (item.incomplete) classes.push('incomplete');
+                        subItem.className = classes.join(' ');
                         subItem.textContent = `${item.id}. ${item.title}`;
                         subItem.dataset.content = item.content;
                         subItem.dataset.link = item.link;
@@ -444,11 +79,62 @@
             container.appendChild(outline);
         }
 
+        // 生成进阶部分HTML的函数
+        function generateAdvancedHTML() {
+            const advancedContainer = document.querySelector('.advanced-container');
+            
+            // 生成标题
+            const advancedTitle = document.createElement('h1');
+            advancedTitle.textContent = courseContent.advancedSection.title;
+            advancedTitle.style.color = '#9c27b0';  // 紫色主题
+            advancedContainer.appendChild(advancedTitle);
+
+            const advancedOutline = document.createElement('ul');
+            advancedOutline.className = 'outline';
+
+            courseContent.advancedSection.sections.forEach(section => {
+                const sectionItem = document.createElement('li');
+                sectionItem.className = 'outline-item';
+
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.textContent = `${section.id}. ${section.title}`;
+                sectionTitle.style.color = '#9c27b0';  // 紫色主题
+                sectionItem.appendChild(sectionTitle);
+
+                // 生成子项目
+                for (let i = 0; i < section.items.length; i += 3) {
+                    const row = document.createElement('ul');
+                    row.className = 'sub-items';
+                    
+                    for (let j = i; j < Math.min(i + 3, section.items.length); j++) {
+                        const item = section.items[j];
+                        const subItem = document.createElement('li');
+                        const classes = ['sub-item'];
+                        if (item.incomplete) classes.push('incomplete');
+                        subItem.className = classes.join(' ');
+                        subItem.textContent = `${item.id}. ${item.title}`;
+                        subItem.dataset.content = item.content;
+                        subItem.dataset.link = item.link;
+                        row.appendChild(subItem);
+                    }
+                    
+                    sectionItem.appendChild(row);
+                }
+
+                advancedOutline.appendChild(sectionItem);
+            });
+
+            advancedContainer.appendChild(advancedOutline);
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
-            generateHTML();
+            // 生成基础和进阶部分的HTML
+            generateBasicHTML();
+            generateAdvancedHTML();
 
-            const items = document.querySelectorAll('.outline-item, .sub-item');
+            // 为所有子项添加点击事件
+            const items = document.querySelectorAll('.sub-item');
             const modalOverlay = document.getElementById('modalOverlay');
             const modalTitle = document.getElementById('modalTitle');
             const modalDescription = document.getElementById('modalDescription');
@@ -471,21 +157,18 @@
                     }, 500);
 
                     // 显示弹窗
-                    if (this.classList.contains('sub-item')) {
-                        const title = this.textContent.trim();
-                        // 移除序号
-                        const titleWithoutNumber = title.replace(/^\d+\.\s*/, '');
-                        modalTitle.textContent = titleWithoutNumber;
-                        modalDescription.textContent = this.dataset.content;
-                        
-                        modalTitle.onclick = function() {
-                            const activeItem = document.querySelector('.sub-item.active');
-                            if (activeItem && activeItem.dataset.link) {
-                                window.open(activeItem.dataset.link, '_blank');
-                            }
-                        };
-                        modalOverlay.style.display = 'block';
-                    }
+                    const title = this.textContent.trim();
+                    // 移除序号
+                    const titleWithoutNumber = title.replace(/^\d+\.\s*/, '');
+                    modalTitle.textContent = titleWithoutNumber;
+                    modalDescription.textContent = this.dataset.content;
+                    
+                    modalTitle.onclick = () => {
+                        if (this.dataset.link) {
+                            window.open(this.dataset.link, '_blank');
+                        }
+                    };
+                    modalOverlay.style.display = 'block';
                 });
             });
 

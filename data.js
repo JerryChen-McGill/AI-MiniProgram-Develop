@@ -37,27 +37,18 @@ const courseContent = {
         sections: [
             {
                 id: "D",
-                title: "进阶功能",
+                title: "进阶技巧",
                 items: [
                     { id: 1, title: "小程序内嵌AI功能", content: "", link: "https://www.xiaohongshu.com/explore/6805bd65000000001d00a080?xsec_token=AB5h1NF_y6pOMMFU4LHeYPzYy0ToQEAAgggI9n3Yw7f9c=&xsec_source=pc_user" },
-                    { id: 2, title: "上传和显示图片", content: "", link: "https://www.xiaohongshu.com/explore/68058a9a000000001d0020fa?xsec_token=AB5h1NF_y6pOMMFU4LHeYPzbmJcbqDf4WZT85Hrxh_OwA=&xsec_source=pc_user" },
-                    { id: 3, title: "连接数据库", content: "", link: "", incomplete: true },
-                    { id: 4, title: "语音辅助开发", content: "", link: "", incomplete: true },
-                    { id: "5", title: "发布中的一些可选项", content: "", link: "", incomplete: true }
-                ]
-            },
-            /*
-            {
-                id: "E",
-                title: "小程序测试进阶",
-                
-                items: [
-                    { id: 1, title: "代码优化", content: "优化代码结构和性能", link: "" },
-                    { id: 2, title: "加载优化", content: "优化小程序加载速度", link: "" },
-                    { id: 3, title: "内存管理", content: "管理和优化内存使用", link: "" }
+                    { id: 2, title: "上传和显示图片", content: "", link: "https://www.xiaohongshu.com/explore/68058a9a000000001d0020fa?xsec_token=AB5h1NF_y6pOMMFU4LHeYPzeTTEPRi88EGduiaYUfLj3U=&xsec_source=pc_user" },
+                    { id: 3, title: "数据库替代方案（适合新手）", content: "", link: "https://www.xiaohongshu.com/explore/680fd1b60000000022035aab?app_platform=ios&app_version=8.69.3&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBXPYcfo8142N-1qSbpnITuyIXhzZgJpJwUsrk_8Upjcc=&author_share=1&xhsshare=WeixinSession&shareRedId=ODZIQjxHNDw2NzUyOTgwNjY0OTc6SkxO&apptime=1745891883&share_id=73b8a7e72b80445aaaf75c6bc3bc7f9c" },
+                    { id: 4, title: "语音辅助开发", content: "下载讯飞输入法电脑版，启用语音输入功能，用语音输入和Cursor对话，即实现了语音辅助开发~", link: "" },
+                    { id: 5, title: "小程序发布的选项", content: "", link: "https://www.xiaohongshu.com/explore/68102e72000000002301414d?secondshare=weixin&share_from_user_hidden=true&appuid=&apptime=1745891923&share_id=869c85e8da4644649ff276498c192e85&xsec_source=h5_share&xsec_token=CBrsxY6Lw2Fau9Oh2Y8x8jVraq9d1CaOpHXpIOCi5WVdI=" },
+                    { id: 6, title: "Cursor Debug进阶技巧", content: "", link: "https://www.xiaohongshu.com/explore/680fc68100000000230178d4?secondshare=weixin&share_from_user_hidden=true&appuid=&apptime=1745891864&share_id=9a0b2b2406e0438fa655a024598cccd9&xsec_source=h5_share&xsec_token=CBXPYcfo8142N-1qSbpnITu7UbdUu0dWM080oBsbf32Xw=" },
+                    { id: 7, title: "微信小程序代码审核速度", content: "", link: "https://www.xiaohongshu.com/explore/680fcbee000000002301e3d3?secondshare=weixin&share_from_user_hidden=true&appuid=&apptime=1745891874&share_id=97e389173bb44d8d84ec71e4eaa6ea63&xsec_source=h5_share&xsec_token=CBXPYcfo8142N-1qSbpnITu29kBWcaB7Wd1ujQBlpC5E4=" },
+                    { id: 8, title: "Cursor代码回退小技巧", content: "", link: "https://www.xiaohongshu.com/explore/680fd592000000002202da05?app_platform=ios&app_version=8.69.3&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBXPYcfo8142N-1qSbpnITu-DRATtDIjHy5RF5s8DY2X0=&author_share=1&xhsshare=WeixinSession&shareRedId=ODZIQjxHNDw2NzUyOTgwNjY0OTc6SkxO&apptime=1745891897&share_id=8cf3342f875c49c186f9c37bf38ee2c7" }
                 ]
             }
-                */
         ]
     }
 }; 

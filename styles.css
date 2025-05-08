@@ -519,12 +519,21 @@ h1:hover {
     text-align: center;
     margin: 32px auto 0 auto;
     padding: 20px 10px;
-    max-width: 600px;
+    max-width: 800px;
     min-width: 200px;
+    width: 100%;
     word-break: break-all;
     color: #222;
     font-size: 1.1em;
     background: none;
-    white-space: nowrap;
     display: block;
+}
+
+@media screen and (max-width: 900px) {
+    .feedback-text {
+        max-width: 100vw;
+        width: 100%;
+        font-size: 1em;
+        padding: 16px 4px;
+    }
 } 

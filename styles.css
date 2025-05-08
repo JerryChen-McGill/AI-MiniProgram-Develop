@@ -497,6 +497,7 @@ h1:hover {
 /* 新增主面板容器，左右排列 */
 .main-panels {
     display: flex;
+    flex-direction: row;
     gap: 40px;
     justify-content: center;
     width: 100%;
@@ -514,4 +515,5 @@ h1:hover {
     font-size: 1.1em;
     background: none;
     white-space: nowrap;
+    display: block;
 } 

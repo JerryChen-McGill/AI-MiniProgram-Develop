@@ -9,8 +9,8 @@ body {
     background-color: #f5f5f5;  /* 浅灰色背景 */
     padding: 40px;
     display: flex;
-    gap: 40px;
-    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -342,7 +342,7 @@ h1:hover {
     body {
         flex-direction: column;
         padding: 20px;
-        gap: 20px;
+        gap: 0;
     }
 
     .container, .advanced-container {
@@ -385,12 +385,24 @@ h1:hover {
     .modal-content p {
         font-size: 14px;
     }
+
+    .main-panels {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .feedback-text {
+        max-width: 95vw;
+        font-size: 1em;
+        padding: 16px 4px;
+        white-space: normal;
+    }
 }
 
 @media screen and (max-width: 480px) {
     body {
-        padding: 15px;
-        gap: 15px;
+        padding: 10px;
+        gap: 0;
     }
 
     .container, .advanced-container {
@@ -422,6 +434,12 @@ h1:hover {
 
     .modal-content p {
         font-size: 12px;
+    }
+
+    .feedback-text {
+        max-width: 99vw;
+        font-size: 0.95em;
+        padding: 10px 2px;
     }
 }
 
@@ -474,4 +492,26 @@ h1:hover {
     margin-bottom: 20px;
     position: relative;
     padding-left: 40px;
+}
+
+/* 新增主面板容器，左右排列 */
+.main-panels {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+}
+
+.feedback-text {
+    text-align: center;
+    margin: 32px auto 0 auto;
+    padding: 20px 10px;
+    max-width: 600px;
+    min-width: 200px;
+    word-break: break-all;
+    color: #222;
+    font-size: 1.1em;
+    background: none;
+    white-space: nowrap;
 } 

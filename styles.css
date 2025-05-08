@@ -111,6 +111,21 @@ h1:hover {
     position: relative;
 }
 
+/* 新增主面板容器，左右排列 */
+.main-panels {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+}
+
+.main-panels > .container {
+    margin-right: 16px;
+}
+.main-panels > .advanced-container {
+    margin-left: 16px;
+}
+
 .outline-item {
     margin-bottom: 40px;
     padding: 20px;
@@ -391,6 +406,12 @@ h1:hover {
         gap: 20px;
     }
 
+    .main-panels > .container,
+    .main-panels > .advanced-container {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     .feedback-text {
         max-width: 95vw;
         font-size: 1em;
@@ -492,16 +513,6 @@ h1:hover {
     margin-bottom: 20px;
     position: relative;
     padding-left: 40px;
-}
-
-/* 新增主面板容器，左右排列 */
-.main-panels {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    justify-content: center;
-    width: 100%;
-    flex: 1;
 }
 
 .feedback-text {
